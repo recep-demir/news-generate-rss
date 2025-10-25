@@ -15,8 +15,6 @@ const categories = [
 async function fetchCategory({ name, url }, page) {
   console.log(`🔎 ${name} kategorisi çekiliyor...`);
   await page.goto(url, { waitUntil: "networkidle" });
-
-  // Küçük bekleme (Cloudflare yüklenmesi için)
   await page.waitForTimeout(4000);
 
   const html = await page.content();
@@ -41,15 +39,13 @@ async function generateRSS() {
     headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
-  const page = await browser.newPage();
 
-  // Gerçek kullanıcı tarayıcısı gibi davran
-  await page.setExtraHTTPHeaders({
-    "Accept-Language": "tr-TR,tr;q=0.9,en;q=0.8",
+  const context = await browser.newContext({
+    userAgent:
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+    locale: "tr-TR",
   });
-  await page.setUserAgent(
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
-  );
+  const page = await context.newPage();
 
   const feed = new RSS({
     title: "Ekşi Şeyler - 6 Kategori",
