@@ -1,3 +1,8 @@
+import playwright from "playwright-extra";
+import StealthPlugin from "playwright-extra-plugin-stealth";
+playwright.use(StealthPlugin());
+
+const { chromium } = playwright;
 import { chromium } from "playwright";
 import * as cheerio from "cheerio";
 import RSS from "rss";
