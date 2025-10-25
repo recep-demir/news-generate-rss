@@ -16,11 +16,11 @@ async function fetchCategory({ name, url }, page) {
   console.log(`🔎 ${name} kategorisi çekiliyor...`);
   try {
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90000 });
-    await page.waitForTimeout(7000); // Cloudflare ekranı için bekleme
+    await page.waitForSelector(".content-card", { timeout: 15000 });
   } catch (e) {
     console.warn(`⚠️ İlk deneme başarısız (${name}), yeniden deneniyor...`);
     await page.goto(url, { waitUntil: "load", timeout: 90000 });
-    await page.waitForTimeout(7000);
+    await page.waitForSelector(".content-card", { timeout: 15000 });
   }
 
   const html = await page.content();
