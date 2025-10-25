@@ -15,12 +15,16 @@ const categories = [
 async function fetchCategory({ name, url }, page) {
   console.log(`🔎 ${name} kategorisi çekiliyor...`);
   try {
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90000 });
-    await page.waitForSelector(".content-card", { timeout: 15000 });
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 120000 });
+    // Cloudflare ekranı geçsin diye uzun bekleme
+    await page.waitForTimeout(12000);
+    await page.waitForSelector(".content-card", { timeout: 20000 });
   } catch (e) {
     console.warn(`⚠️ İlk deneme başarısız (${name}), yeniden deneniyor...`);
-    await page.goto(url, { waitUntil: "load", timeout: 90000 });
-    await page.waitForSelector(".content-card", { timeout: 15000 });
+    await page.waitForTimeout(8000);
+    await page.goto(url, { waitUntil: "load", timeout: 120000 });
+    await page.waitForTimeout(12000);
+    await page.waitForSelector(".content-card", { timeout: 20000 });
   }
 
   const html = await page.content();
