@@ -13,10 +13,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
-      - run: node news-generate-rss.js
-        env:
-          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: false
+      - name: Install dependencies
+        run: npm install
+      - name: Install Chromium for Puppeteer
+        run: npx puppeteer browsers install chrome
+      - name: Generate RSS
+        run: node news-generate-rss.js
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
