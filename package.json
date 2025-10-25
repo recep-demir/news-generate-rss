@@ -1,0 +1,10 @@
+{
+  "name": "eksi-seyler-rss",
+  "type": "module",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cheerio": "^1.1.2",
+    "rss": "^1.2.2"
+  }
+}
+
