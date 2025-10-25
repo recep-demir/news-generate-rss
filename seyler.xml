@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title><![CDATA[Ekşi Şeyler - Kültür, Bilim, Spor]]></title>
-        <description><![CDATA[Ekşi Şeyler'deki son içerikler (Kültür, Bilim, Spor)]]></description>
+        <title><![CDATA[Ekşi Şeyler - 6 Kategori]]></title>
+        <description><![CDATA[Ekşi Şeyler'deki son içerikler (Kültür, Bilim, Spor, Haber, Yaşam, Eğlence)]]></description>
         <link>https://eksiseyler.com/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sat, 25 Oct 2025 16:26:24 GMT</lastBuildDate>
-        <atom:link href="https://eksiseyler.com/" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Sat, 25 Oct 2025 18:11:07 GMT</lastBuildDate>
+        <atom:link href="https://recep-demir.github.io/news-generate-rss/seyler.xml" rel="self" type="application/rss+xml"/>
         <language><![CDATA[tr]]></language>
+        <item>
+            <title><![CDATA[[Bilgi] İçerik alınamadı]]></title>
+            <description><![CDATA[Ekşi Şeyler içeriği alınamadı. Bir sonraki çalıştırmada yeniden denenecek.]]></description>
+            <link>https://eksiseyler.com/</link>
+            <guid isPermaLink="true">https://eksiseyler.com/</guid>
+            <pubDate>Sat, 25 Oct 2025 18:11:07 GMT</pubDate>
+        </item>
     </channel>
 </rss>
