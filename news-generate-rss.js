@@ -1,12 +1,11 @@
 import playwright from "playwright-extra";
 import StealthPlugin from "playwright-extra-plugin-stealth";
-playwright.use(StealthPlugin());
-
-const { chromium } = playwright;
-import { chromium } from "playwright";
 import * as cheerio from "cheerio";
 import RSS from "rss";
 import fs from "fs";
+
+playwright.use(StealthPlugin());
+const { chromium } = playwright;
 
 const categories = [
   { name: "Kültür",  url: "https://eksiseyler.com/kategori/kultur" },
@@ -40,7 +39,7 @@ async function fetchCategory({ name, url }, page) {
 }
 
 async function generateRSS() {
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({ headless: true, args: ["--no-sandbox","--disable-setuid-sandbox"] });
   const page = await browser.newPage();
 
   const feed = new RSS({
