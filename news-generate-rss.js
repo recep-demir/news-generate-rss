@@ -11,7 +11,8 @@ const categories = [
 
 async function fetchCategory({ name, url }, page) {
   console.log(`🔎 ${name} kategorisi çekiliyor...`);
-  await page.goto(url, { waitUntil: "domcontentloaded" });
+  await page.goto(url, { waitUntil: "networkidle2" });
+await page.waitForSelector(".content-card", { timeout: 10000 });
 
   const html = await page.content();
   const $ = cheerio.load(html);
