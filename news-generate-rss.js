@@ -1,11 +1,7 @@
-import playwright from "playwright-extra";
-import StealthPlugin from "playwright-extra-plugin-stealth";
+import { chromium } from "playwright";
 import * as cheerio from "cheerio";
 import RSS from "rss";
 import fs from "fs";
-
-playwright.use(StealthPlugin());
-const { chromium } = playwright;
 
 const categories = [
   { name: "Kültür",  url: "https://eksiseyler.com/kategori/kultur" },
@@ -19,6 +15,8 @@ const categories = [
 async function fetchCategory({ name, url }, page) {
   console.log(`🔎 ${name} kategorisi çekiliyor...`);
   await page.goto(url, { waitUntil: "networkidle" });
+
+  // Küçük bekleme (Cloudflare yüklenmesi için)
   await page.waitForTimeout(4000);
 
   const html = await page.content();
@@ -39,8 +37,19 @@ async function fetchCategory({ name, url }, page) {
 }
 
 async function generateRSS() {
-  const browser = await chromium.launch({ headless: true, args: ["--no-sandbox","--disable-setuid-sandbox"] });
+  const browser = await chromium.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
+
+  // Gerçek kullanıcı tarayıcısı gibi davran
+  await page.setExtraHTTPHeaders({
+    "Accept-Language": "tr-TR,tr;q=0.9,en;q=0.8",
+  });
+  await page.setUserAgent(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
+  );
 
   const feed = new RSS({
     title: "Ekşi Şeyler - 6 Kategori",
