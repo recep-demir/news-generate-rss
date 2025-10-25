@@ -14,8 +14,14 @@ const categories = [
 
 async function fetchCategory({ name, url }, page) {
   console.log(`🔎 ${name} kategorisi çekiliyor...`);
-  await page.goto(url, { waitUntil: "networkidle" });
-  await page.waitForTimeout(4000);
+  try {
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90000 });
+    await page.waitForTimeout(7000); // Cloudflare ekranı için bekleme
+  } catch (e) {
+    console.warn(`⚠️ İlk deneme başarısız (${name}), yeniden deneniyor...`);
+    await page.goto(url, { waitUntil: "load", timeout: 90000 });
+    await page.waitForTimeout(7000);
+  }
 
   const html = await page.content();
   const $ = cheerio.load(html);
