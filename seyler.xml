@@ -4,7 +4,7 @@
         <description><![CDATA[Ekşi Şeyler'deki son içerikler (Kültür, Bilim, Spor, Haber, Yaşam, Eğlence)]]></description>
         <link>https://eksiseyler.com/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 03 Nov 2025 14:25:04 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 03 Nov 2025 14:51:40 GMT</lastBuildDate>
         <atom:link href="https://recep-demir.github.io/news-generate-rss/seyler.xml" rel="self" type="application/rss+xml"/>
         <language><![CDATA[tr]]></language>
         <item>
@@ -12,7 +12,7 @@
             <description><![CDATA[Ekşi Şeyler içeriği alınamadı. Bir sonraki çalıştırmada yeniden denenecek.]]></description>
             <link>https://eksiseyler.com/</link>
             <guid isPermaLink="true">https://eksiseyler.com/</guid>
-            <pubDate>Mon, 03 Nov 2025 14:25:04 GMT</pubDate>
+            <pubDate>Mon, 03 Nov 2025 14:51:40 GMT</pubDate>
         </item>
     </channel>
 </rss>
